@@ -1,9 +1,9 @@
-const mysql = require('mysql')
+const mysql = require('mysql2')
 const pool = require('../sql/connection')
 const { handleSQLError } = require('../sql/error')
 
 const getAllUsers = (req, res) => {
-  pool.query("SELECT * FROM users", (err, rows) => {
+  pool.query("SELECT * FROM users LIMIT 50", (err, rows) => {
     if (err) return handleSQLError(res, err)
     return res.json(rows);
   })
